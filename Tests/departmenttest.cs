@@ -53,6 +53,21 @@ namespace University
           Assert.Equal(newDepartment, foundDepartment);
       }
 
+      [Fact]
+      public void AddStudent_AddStudentToDepartment_student()
+      {
+          Student newStudent = new Student("Tammy");
+          newStudent.Save();
+          Department newDepartment = new Department("Math");
+          newDepartment.Save();
+
+          newDepartment.AddStudent(newStudent);
+          List<Student> expected = new List<Student>{newStudent};
+          List<Student> result = newDepartment.GetStudents();
+
+          Assert.Equal(expected, result);
+      }
+
 
       public void Dispose()
        {
