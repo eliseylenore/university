@@ -30,33 +30,33 @@ namespace University
         Assert.Equal(firstDepartment, secondDepartment);
       }
 
-    //   [Fact]
-    //   public void Save_ReturnsDepartmentName_name()
-    //   {
-    //       Department newDepartment = new Department("Math");
-    //       newDepartment.Save();
-      //
-    //       List<Department> expected = new List<Department>{newDepartment};
-    //       List<Department> result = Department.GetAll();
-      //
-    //       Assert.Equal(expected, result);
-    //   }
-      //
-    //   [Fact]
-    //   public void Find_ReturnsFoundDepartment_name()
-    //   {
-    //       Department newDepartment = new Department("Math");
-    //       newDepartment.Save();
-      //
-    //       Department foundDepartment = Department.Find(newDepartment.GetId());
-      //
-    //       Assert.Equal(newDepartment, foundDepartment);
-    //   }
-      //
+      [Fact]
+      public void Save_ReturnsDepartmentName_name()
+      {
+          Department newDepartment = new Department("Math");
+          newDepartment.Save();
+
+          List<Department> expected = new List<Department>{newDepartment};
+          List<Department> result = Department.GetAll();
+
+          Assert.Equal(expected, result);
+      }
+
+      [Fact]
+      public void Find_ReturnsFoundDepartment_name()
+      {
+          Department newDepartment = new Department("Math");
+          newDepartment.Save();
+
+          Department foundDepartment = Department.Find(newDepartment.GetId());
+
+          Assert.Equal(newDepartment, foundDepartment);
+      }
+
 
       public void Dispose()
        {
-        //    Department.DeleteAll();
+           Department.DeleteAll();
        }
 
     }
