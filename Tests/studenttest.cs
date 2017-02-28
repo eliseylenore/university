@@ -30,9 +30,21 @@ namespace University
         Assert.Equal(firstStudent, secondStudent);
       }
 
+      [Fact]
+      public void Save_ReturnsStudentName_name()
+      {
+          Student newStudent = new Student("Sally");
+          newStudent.Save();
+
+          List<Student> expected = new List<Student>{newStudent};
+          List<Student> result = Student.GetAll();
+
+          Assert.Equal(expected, result);
+      }
+
       public void Dispose()
        {
-
+           Student.DeleteAll();
        }
     }
 }

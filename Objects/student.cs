@@ -4,43 +4,43 @@ using System;
 
 namespace University
 {
-  public class Student
-  {
-    private int _id;
-    private string _name;
-
-    public Student(string Name, int Id = 0)
+    public class Student
     {
-      _id = Id;
-      _name = Name;
-    }
+        private int _id;
+        private string _name;
 
-    public int GetId()
-       {
-           return _id;
-       }
+        public Student(string Name, int Id = 0)
+        {
+            _id = Id;
+            _name = Name;
+        }
 
-     public string GetName()
-     {
-         return _name;
-     }
+        public int GetId()
+        {
+            return _id;
+        }
 
-    public override bool Equals(System.Object otherStudent)
-    {
-      if(!(otherStudent is Student))
-      {
-        return false;
-      }
-      else
-      {
-        Student newStudent = (Student) otherStudent;
-        bool idEquality = (this.GetId() == newStudent.GetId());
-        bool nameEquality = (this.GetName() == newStudent.GetName());
-        return (idEquality && nameEquality);
-      }
-    }
+        public string GetName()
+        {
+            return _name;
+        }
 
-    public static List<Student> GetAll()
+        public override bool Equals(System.Object otherStudent)
+        {
+            if(!(otherStudent is Student))
+            {
+                return false;
+            }
+            else
+            {
+                Student newStudent = (Student) otherStudent;
+                bool idEquality = (this.GetId() == newStudent.GetId());
+                bool nameEquality = (this.GetName() == newStudent.GetName());
+                return (idEquality && nameEquality);
+            }
+        }
+
+        public static List<Student> GetAll()
         {
             List<Student> AllStudents = new List<Student>{};
 
@@ -68,5 +68,46 @@ namespace University
             }
             return AllStudents;
         }
-  }
+
+        public void Save()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("INSERT INTO students (name) OUTPUT INSERTED.id VALUES (@StudentName);", conn);
+
+            SqlParameter studentName = new SqlParameter();
+            studentName.ParameterName = "@StudentName";
+            studentName.Value = this._name;
+
+            cmd.Parameters.Add(studentName);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._id = rdr.GetInt32(0);
+            }
+
+            if(rdr != null)
+            {
+                rdr.Close();
+            }
+            if(conn != null)
+            {
+                conn.Close();
+            }
+        }
+
+        public static void DeleteAll()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("DELETE FROM students;", conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+    }
 }
