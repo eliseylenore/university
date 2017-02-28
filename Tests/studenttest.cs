@@ -10,7 +10,21 @@ namespace University
     {
       public StudentTest()
       {
-        DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=cool_database_test;Integrated Security=SSPI"
+        DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=cool_database_test;Integrated Security=SSPI;";
       }
+
+      [Fact]
+      public void GetAll_StudentEmptyAtFirst_true()
+      {
+        int result = Student.GetAll().Count;
+
+        Assert.Equal(0, result);
+      }
+
+
+      public void Dispose()
+       {
+        
+       }
     }
 }
