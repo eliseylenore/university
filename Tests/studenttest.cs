@@ -21,10 +21,18 @@ namespace University
         Assert.Equal(0, result);
       }
 
+      [Fact]
+      public void Equals_ReturnsTrueForSameName_true()
+      {
+        Student firstStudent = new Student("Sally");
+        Student secondStudent = new Student("Sally");
+
+        Assert.Equal(firstStudent, secondStudent);
+      }
 
       public void Dispose()
        {
-        
+
        }
     }
 }

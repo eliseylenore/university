@@ -20,10 +20,25 @@ namespace University
            return _id;
        }
 
-       public string GetName()
-       {
-           return _name;
-       }
+     public string GetName()
+     {
+         return _name;
+     }
+
+    public override bool Equals(System.Object otherStudent)
+    {
+      if(!(otherStudent is Student))
+      {
+        return false;
+      }
+      else
+      {
+        Student newStudent = (Student) otherStudent;
+        bool idEquality = (this.GetId() == newStudent.GetId());
+        bool nameEquality = (this.GetName() == newStudent.GetName());
+        return (idEquality && nameEquality);
+      }
+    }
 
     public static List<Student> GetAll()
         {
