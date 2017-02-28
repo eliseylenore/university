@@ -42,9 +42,21 @@ namespace University
           Assert.Equal(expected, result);
       }
 
+      [Fact]
+      public void Find_ReturnsFoundStudent_name()
+      {
+          Student newStudent = new Student("Sally");
+          newStudent.Save();
+
+          Student foundStudent = Student.Find(newStudent.GetId());
+
+          Assert.Equal(newStudent, foundStudent);
+      }
+
       public void Dispose()
        {
            Student.DeleteAll();
        }
+
     }
 }
