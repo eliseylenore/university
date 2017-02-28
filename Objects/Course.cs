@@ -65,5 +65,21 @@ namespace University
 
             return AllCourses;
         }
+
+        public override bool Equals(System.Object otherCourse)
+        {
+            if (!(otherCourse is Course))
+            {
+                return false;
+            }
+            else
+            {
+                Course newCourse = (Course) otherCourse;
+                bool idEquality = this.GetId() == newCourse.GetId();
+                bool nameEquality = this.GetName() == newCourse.GetName();
+                bool numberEquality = this.GetNumber() == newCourse.GetNumber();
+                return (idEquality && nameEquality && numberEquality);
+            }
+        }
     }
 }

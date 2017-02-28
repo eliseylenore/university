@@ -25,5 +25,14 @@ namespace University
             //  Course.DeleteAll();
              Student.DeleteAll();
          }
+
+         [Fact]
+         public void Equals_ReturnsTrueForSameName_true()
+         {
+             Course firstCourse = new Course("Music", 123);
+             Course secondCourse = new Course("Music", 123);
+
+             Assert.Equal (firstCourse, secondCourse);
+         }
     }
 }
