@@ -113,6 +113,7 @@ namespace University
             conn.Open();
 
             SqlCommand cmd = new SqlCommand("SELECT students.* FROM classes JOIN classes_students ON (classes.id = classes_students.class_id) JOIN students ON (classes_students.student_id = students.id) WHERE classes.id = @ClassId;", conn);
+
             SqlParameter ClassIdParameter = new SqlParameter();
             ClassIdParameter.ParameterName = "@ClassId";
             ClassIdParameter.Value = this.GetId().ToString();

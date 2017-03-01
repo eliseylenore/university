@@ -173,6 +173,7 @@ namespace University
             SqlParameter departmentIdParameter = new SqlParameter();
             departmentIdParameter.ParameterName = "@DepartmentId";
             departmentIdParameter.Value = this.GetId().ToString();
+            
             cmd.Parameters.Add(departmentIdParameter);
 
             SqlDataReader rdr = cmd.ExecuteReader();
