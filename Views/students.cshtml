@@ -1,0 +1,26 @@
+@{
+    Layout="Shared/_Layout.cshtml";
+}
+
+
+
+<h1>Students</h1>
+
+@if (@Model.Count == 0)
+{
+    <p>No students have been added to this university</p>
+}
+else{
+    <ol>
+    @foreach (var student in @Model)
+    {
+        <li>@student.GetName()</li>
+    }
+    </ol>
+}
+<h4>Add a student</h4>
+<form action ='/student/new' method='post'>
+    <label for='student-name'>Student name</label>
+    <input id='student-name' name='student-name' type="text">
+     <button type='submit'>Add</button>
+</form>
