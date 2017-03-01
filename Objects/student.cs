@@ -104,9 +104,9 @@ namespace University
           SqlConnection conn = DB.Connection();
           conn.Open();
 
-          SqlCommand cmd = mew SqlCommand("DELETE FROM students WHERE id = @StudentId; DELETE FROM classes_student WHERE class_id = @StudentId;", conn);
+          SqlCommand cmd = new SqlCommand("DELETE FROM students WHERE id = @StudentId; DELETE FROM classes_students WHERE class_id = @StudentId;", conn);
 
-          SqlParameter studentIdParameter = new SqlParameter;
+          SqlParameter studentIdParameter = new SqlParameter();
           studentIdParameter.ParameterName = "@StudentId";
           studentIdParameter.Value = this.GetId();
           cmd.Parameters.Add(studentIdParameter);

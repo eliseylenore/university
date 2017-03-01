@@ -53,6 +53,21 @@ namespace University
           Assert.Equal(newStudent, foundStudent);
       }
 
+      [Fact]
+      public void Delete_DeletesIndividualStudent_list()
+      {
+          Student newStudent1 = new Student("Sally");
+          newStudent1.Save();
+          Student newStudent2 = new Student("Gretel");
+          newStudent2.Save();
+
+          newStudent2.Delete();
+
+          List<Student> expected = new List<Student>{newStudent1};
+          List<Student> actual = Student.GetAll();
+
+          Assert.Equal(expected, actual);
+      }
 
       public void Dispose()
        {
