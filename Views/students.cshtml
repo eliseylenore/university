@@ -11,12 +11,16 @@
     <p>No students have been added to this university</p>
 }
 else{
-    <ol>
     @foreach (var student in @Model)
     {
-        <li>@student.GetName()</li>
+        <row>
+            <h4 class="col s2">@student.GetName()</h4>
+            <form action="/student/delete/Model.GetId()" class="col s2" method="post">
+                <input type="hidden" name="_method"  value="DELETE">
+                <button type="submit" class="material-icons">delete</button>
+            </form>
+        </row>
     }
-    </ol>
 }
 <h4>Add a student</h4>
 <form action ='/student/new' method='post'>
