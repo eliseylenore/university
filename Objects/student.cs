@@ -99,6 +99,26 @@ namespace University
             }
         }
 
+        public void Delete()
+        {
+          SqlConnection conn = DB.Connection();
+          conn.Open();
+
+          SqlCommand cmd = mew SqlCommand("DELETE FROM students WHERE id = @StudentId; DELETE FROM classes_student WHERE class_id = @StudentId;", conn);
+
+          SqlParameter studentIdParameter = new SqlParameter;
+          studentIdParameter.ParameterName = "@StudentId";
+          studentIdParameter.Value = this.GetId();
+          cmd.Parameters.Add(studentIdParameter);
+
+          cmd.ExecuteNonQuery();
+
+          if (conn != null)
+          {
+              conn.Close();
+          }
+        }
+
         public static void DeleteAll()
         {
             SqlConnection conn = DB.Connection();

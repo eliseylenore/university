@@ -72,6 +72,7 @@ namespace University
       public void Dispose()
        {
            Department.DeleteAll();
+           Student.DeleteAll();
        }
 
     }
