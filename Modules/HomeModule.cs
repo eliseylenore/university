@@ -45,6 +45,13 @@ namespace University
                 return View["students.cshtml", AllStudents];
             };
 
+            Delete["/student/delete/{id}"] = parameters =>  {
+                Student foundStudent = Student.Find(parameters.id);
+                foundStudent.Delete();
+                List<Student> AllStudents = Student.GetAll();
+                return View["students.cshtml", AllStudents];
+            };
+
         }
     }
 }
